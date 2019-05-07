@@ -61,11 +61,13 @@ print("写总字节数:",result)
 def main():
     while True:
         #获得接收缓冲区字符
-        count = ser.inWaiting()
+        count = ser.in_waiting
         if count != 0:
             #读取内容并回显
             recv = ser.read(count)
-            ser.write(recv)
+            print("收到消息:",recv.decode("gbk"))
+            result=ser.write(recv)
+            print("写总字节数:",result)
         #清空接收缓冲区
         ser.flushInput()
         #必要的软件延时
